@@ -5,13 +5,14 @@
 package getlang
 
 import (
-	"golang.org/x/text/language"
-	"golang.org/x/text/language/display"
 	"io"
 	"io/ioutil"
 	"math"
 	"sort"
 	"unicode"
+
+	"golang.org/x/text/language"
+	"golang.org/x/text/language/display"
 )
 
 const undeterminedRate int = 41
@@ -21,6 +22,7 @@ const scriptCountFactor int = 2
 const expOverflow = 7.09e+02
 
 var langs = map[string][]string{
+	"cs":      cs,
 	"de":      de,
 	"en":      en,
 	"es":      es,
@@ -32,12 +34,14 @@ var langs = map[string][]string{
 	"pl":      pl,
 	"pt":      pt,
 	"ru":      ru,
-	"sr-Latn": srLatin,
 	"sr-Cyrl": srCyr,
+	"sr-Latn": srLatin,
 	"tl":      tl,
 	"uk":      uk,
 	"vi":      vi,
 }
+
+var langsMap = map[string]map[string]int{}
 
 var scripts = map[string][]*unicode.RangeTable{
 	"ar": {unicode.Arabic},
@@ -163,9 +167,15 @@ func matchScript(langName, text string, matches map[string]int, ranges ...*unico
 
 func matchWith(langName string, trigs []trigram, langProfile []string, matches map[string]int) {
 	var undeterminedCount int
-	prof := make(map[string]int)
-	for _, x := range langProfile {
-		prof[x] = 1
+
+	prof, exists := langsMap[langName]
+	if !exists {
+		langsMap[langName] = make(map[string]int)
+		for _, x := range langProfile {
+			langsMap[langName][x] = 1
+		}
+
+		prof = langsMap[langName]
 	}
 
 	for _, trig := range trigs {

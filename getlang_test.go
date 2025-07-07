@@ -1,9 +1,10 @@
 package getlang
 
 import (
-	"github.com/stretchr/testify/assert"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestEmptyStringFromReader(t *testing.T) {
@@ -24,7 +25,7 @@ func TestEnglishPhraseFromBigReader(t *testing.T) {
 func TestEnglishPhraseFromReader(t *testing.T) {
 	info, _ := FromReader(strings.NewReader("this is the language"))
 	assert.Equal(t, "en", info.LanguageCode())
-	assert.Equal(t, true, info.Confidence() > 0.75)
+	assert.Equal(t, true, info.Confidence() > 0.7)
 }
 
 func TestEnglishPhraseTag(t *testing.T) {
@@ -144,7 +145,15 @@ func TestRussianPhraseUDHR(t *testing.T) {
 		t,
 		"Все люди рождаются свободными и равными в своем достоинстве и правах",
 		"ru",
-		0.55)
+		0.52)
+}
+
+func TestCzechPhraseUDHR(t *testing.T) {
+	ensureClassifiedWithConfidence(
+		t,
+		"Vzdělání nechť je bezplatné, alespoň v počátečních a základních stupních",
+		"cs",
+		0.52)
 }
 
 func TestUkrainianPhraseUDHR(t *testing.T) {
@@ -343,7 +352,7 @@ func TestSerbianLatinPhrase(t *testing.T) {
 		t,
 		text,
 		"sr",
-		0.85)
+		0.80)
 
 	ensureClassifiedTextNamed(
 		t,
@@ -477,7 +486,7 @@ func TestNonsense(t *testing.T) {
 		t,
 		text,
 		"und",
-		0.75)
+		0.6)
 
 	ensureClassifiedTextNamed(
 		t,
