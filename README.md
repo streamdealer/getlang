@@ -15,7 +15,7 @@ getlang provides fast natural language detection in Go.
 
 Installation:
 ```sh
-    go get -u github.com/rylans/getlang
+    go get -u github.com/streamdealer/getlang
 ```
 
 example:
