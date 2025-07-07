@@ -1,13 +1,13 @@
 # getlang
 
-[![GoDoc](https://godoc.org/github.com/rylans/getlang?status.svg)](https://godoc.org/github.com/rylans/getlang) [![Go Report Card](https://goreportcard.com/badge/github.com/rylans/getlang)](https://goreportcard.com/report/github.com/rylans/getlang) [![Build Status](https://travis-ci.org/rylans/getlang.svg?branch=master)](https://travis-ci.org/rylans/getlang) ![cover.run go](https://cover.run/go/github.com/rylans/getlang.svg?tag=golang-1.10)
+[![GoDoc](https://godoc.org/github.com/streamdealer/getlang?status.svg)](https://godoc.org/github.com/streamdealer/getlang) [![Go Report Card](https://goreportcard.com/badge/github.com/streamdealer/getlang)](https://goreportcard.com/report/github.com/streamdealer/getlang) [![Build Status](https://travis-ci.org/streamdealer/getlang.svg?branch=master)](https://travis-ci.org/streamdealer/getlang) ![cover.run go](https://cover.run/go/github.com/streamdealer/getlang.svg?tag=golang-1.10)
 
 getlang provides fast natural language detection in Go.
 
 ## Features
 
 * Offline -- no internet connection required
-* Supports [30 languages](https://github.com/rylans/getlang/blob/master/LANGUAGES.md)
+* Supports [30 languages](https://github.com/streamdealer/getlang/blob/master/LANGUAGES.md)
 * Provides ISO 639 language codes
 * Fast
 
@@ -33,12 +33,5 @@ func main(){
 }
 ```
 
-## Documentation
-[getlang on godoc](https://godoc.org/github.com/rylans/getlang)
-
 ## License
-[MIT](https://github.com/rylans/getlang/blob/master/LICENSE)
-
-## Acknowledgements and Citations
-* Thanks to [abadojack](https://github.com/abadojack) for the trigram generation logic in whatlanggo
-* Cavnar, William B., and John M. Trenkle. "N-gram-based text categorization." Ann arbor mi 48113.2 (1994): 161-175.
+[MIT](https://github.com/streamdealer/getlang/blob/master/LICENSE)

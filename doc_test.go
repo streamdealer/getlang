@@ -2,7 +2,8 @@ package getlang_test
 
 import (
 	"fmt"
-	"github.com/rylans/getlang"
+
+	"github.com/streamdealer/getlang"
 )
 
 func ExampleInfo_Confidence() {
