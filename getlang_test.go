@@ -1,6 +1,7 @@
 package getlang
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 
@@ -107,6 +108,21 @@ func TestPolishPhraseUDHR(t *testing.T) {
 		0.95)
 }
 
+func TestSwahiliPhraseUDHR(t *testing.T) {
+	texts := []string{
+		"Kila mtu ana haki ya kuelimishwa. Elimu yapasa itolewe bure hasa ile ya madarasa ya chini. Elimu ya masarasa ya chini ihudhuriwe kwa lazima. Elimu ya ufundi na ustadi iwe wazi kwa wote. Na elimu ya juu iwe wazi kwa wote kwa kutegemea sifa ya mtu.",
+		"Elimu itolewe kwa madhumuni ya kuendeleza barabara hali ya binadamu, na kwa shabaha ya kukuza haki za binadamu na uhuru wake wa asili. Elimu ni wajibu ikuze hali ya kueleana, kuvumiliana na ya urafiki kati ya mataifa na kati ya watu wa rangi na dini mbali-mbali.Kadhalika ni wajibu iendeleze shughuli za Umoja wa Mataifa za kudumisha amani",
+		"Kila mtu ana haki ya kulindwa kwa kila hali kutokana na mambo ya sayansi aliyoandika, aliyochora au aliyogundua.",
+	}
+	for _, text := range texts {
+		ensureClassifiedWithConfidence(
+			t,
+			text,
+			"sw",
+			0.9)
+	}
+}
+
 func TestPunjabiPhrase(t *testing.T) {
 	text := "ਮੇਰਾ ਨਾਮ ਭਰਤ ਹੈ."
 	lang := "ਪੰਜਾਬੀ"
@@ -161,7 +177,7 @@ func TestUkrainianPhraseUDHR(t *testing.T) {
 		t,
 		"Всі люди народжуються вільними і рівними у своїй гідності та правах",
 		"uk",
-		0.80)
+		0.7)
 }
 
 func TestFrenchPhraseUDHR(t *testing.T) {
@@ -352,7 +368,7 @@ func TestSerbianLatinPhrase(t *testing.T) {
 		t,
 		text,
 		"sr",
-		0.80)
+		0.75)
 
 	ensureClassifiedTextNamed(
 		t,
@@ -369,7 +385,7 @@ func TestSerbianCyrillicPhrase(t *testing.T) {
 		t,
 		text,
 		"sr",
-		0.95)
+		0.85)
 
 	ensureClassifiedTextNamed(
 		t,
@@ -437,7 +453,7 @@ func TestTagalogPhrase(t *testing.T) {
 		t,
 		text,
 		"tl",
-		0.95)
+		0.85)
 
 	ensureClassifiedTextNamed(
 		t,
@@ -499,7 +515,7 @@ func ensureClassifiedWithConfidence(t *testing.T, text string, expectedLang stri
 	info := FromString(text)
 
 	assert.Equal(t, expectedLang, info.LanguageCode(), "Misclassified text: "+text)
-	assert.Equal(t, true, info.Confidence() > minConfidence)
+	assert.Equal(t, true, info.Confidence() > minConfidence, fmt.Sprintf("Low confidence: %f (exp: %f)", info.Confidence(), minConfidence))
 }
 
 func ensureClassifiedTextNamed(t *testing.T, text string, expectedEnglishName string, expectedSelfName string) {

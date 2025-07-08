@@ -36,3 +36,4 @@ Fast natural language detection.
 | Vietnamese       | vi        |
 | Ukrainian        | uk        |
 | Chinese          | zh        |
+| Swahili          | sw        |

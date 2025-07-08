@@ -7,6 +7,7 @@ package getlang
 import (
 	"io"
 	"io/ioutil"
+	"log"
 	"math"
 	"sort"
 	"unicode"
@@ -39,6 +40,7 @@ var langs = map[string][]string{
 	"tl":      tl,
 	"uk":      uk,
 	"vi":      vi,
+	"sw":      sw,
 }
 
 var langsMap = map[string]map[string]int{}
@@ -115,6 +117,8 @@ func FromString(text string) Info {
 	for k, v := range langs {
 		matchWith(k, trigs, v, langMatches)
 	}
+
+	log.Println(langMatches)
 
 	for k, v := range scripts {
 		matchScript(k, text, langMatches, v...)
