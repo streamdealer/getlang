@@ -7,7 +7,6 @@ package getlang
 import (
 	"io"
 	"io/ioutil"
-	"log"
 	"math"
 	"sort"
 	"unicode"
@@ -117,8 +116,6 @@ func FromString(text string) Info {
 	for k, v := range langs {
 		matchWith(k, trigs, v, langMatches)
 	}
-
-	log.Println(langMatches)
 
 	for k, v := range scripts {
 		matchScript(k, text, langMatches, v...)
